@@ -59,11 +59,24 @@ function TexturedCube() {
             `${base}textures/back.jpg`,    // -Z
         ];
 
+        // const materials = texturePaths.map((path) => {
+        //     const texture = loader.load(path);
+        //     texture.colorSpace = THREE.SRGBColorSpace;
+        //     return new THREE.MeshBasicMaterial({ map: texture });
+        // });
+
         const materials = texturePaths.map((path) => {
-            const texture = loader.load(path);
+            const texture = loader.load(path, () => {
+                texture.needsUpdate = true;
+            });
+
             texture.colorSpace = THREE.SRGBColorSpace;
-            return new THREE.MeshBasicMaterial({ map: texture });
+
+            return new THREE.MeshBasicMaterial({
+                map: texture
+            });
         });
+
 
         // Geometry
         const geometry = new THREE.BoxGeometry(3, 3, 3);
