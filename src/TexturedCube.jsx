@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { useEffect, useRef } from "react";
 
+const base = import.meta.env.BASE_URL;
 
 // Camera factory
 function setCamera(width, height) {
@@ -40,13 +41,22 @@ function TexturedCube() {
 
         // Load textures (one per cube face)
         const loader = new THREE.TextureLoader();
+        // const texturePaths = [
+        //     "/textures/right.jpg",   // +X
+        //     "/textures/left.jpg",    // -X
+        //     "/textures/back.jpg",     // +Y
+        //     "/textures/bottom.jpg",  // -Y
+        //     "/textures/front.jpg",   // +Z
+        //     "/textures/top.jpg",    // -Z
+        // ];
+
         const texturePaths = [
-            "/textures/right.jpg",   // +X
-            "/textures/left.jpg",    // -X
-            "/textures/back.jpg",     // +Y
-            "/textures/bottom.jpg",  // -Y
-            "/textures/front.jpg",   // +Z
-            "/textures/top.jpg",    // -Z
+            `${base}textures/right.jpg`,   // +X
+            `${base}textures/left.jpg`,    // -X
+            `${base}textures/top.jpg`,     // +Y
+            `${base}textures/bottom.jpg`,  // -Y
+            `${base}textures/front.jpg`,   // +Z
+            `${base}textures/back.jpg`,    // -Z
         ];
 
         const materials = texturePaths.map((path) => {
